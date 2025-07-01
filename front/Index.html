@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Index.css">
+    <title>Registro de Tareas</title>
+</head>
+<body>
+    <header>
+        <h1>Control de Tareas</h1>
+    </header>
+    <main>
+        <section class="Filtrado">
+            <div class="FltradoContenedor1">
+                <h2>Sector de Tareas</h2>
+                <button><a href="./CrearTarea.html">Crear Tarea</a></button>
+            </div>
+            <div class="Botones">
+                <button>Tareas Echas</button>
+                <button>Tareas Faltantes</button>
+                <button>Tareas Antiguas</button>
+                <button>Tareas Nuevas</button>
+                <button>Tareas Urgentes</button>
+            </div>
+            <div id="VistaDeTareas">
+            </div>
+        </section>
+
+    </main>
+    <footer id="footer">
+        <div class="Informacion">
+            <h3>Informacion</h3>
+            <p>Este es un programa web diseñado para registrar tareas</p>
+            <p>Fue desarollado por Taiel Ramos</p>
+            <p>Coegio Acargo: Colegio Provincial Dr. Ernesto Guevera</p>
+        </div>
+        <div class="Links">
+            <h3>Links</h3>
+            <p><a href="Index.html">Home</a></p>
+            <p><a href="./CrearTarea.html">Crear Tarea</a></p>
+            <p><a href="#footer">Informacion</a></p>
+        </div>
+        <div class="Contactos">
+            <h3>Contactos</h3>
+            <p>Correo Electronico del desarollador: <a href="">taielramos4@gmail.com</a></p>
+            <p>Correo del Colegio Acargo: <a href=""></a></p>
+            <p>Faceboock del Colegio Acargo: <a href="">Faceboock</a></p>
+        </div>
+    </footer>
+</body>
+<script>
+    const VistaDeTareas = document.getElementById('VistaDeTareas');
+
+    if (VistaDeTareas.children.length == 0) {
+        const texto = document.createElement("p");
+        texto.textContent = "No hay Tareas Pendientes.";
+        VistaDeTareas.appendChild(texto);
+    }
+</script>
+</html>

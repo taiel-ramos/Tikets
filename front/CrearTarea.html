@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="Index.css">
+    <title>Registro de Tareas</title>
+</head>
+<body>
+    <header>
+        <h1>Control de Tareas</h1>
+    </header>
+    <main>
+        <section class="CreacionDeTareas">
+            <div class="ContenedorDelTitulo">
+                <h2>Crear un Tarea Nueva</h2>
+            </div>
+            <div class="formulario">
+                <div class="Titulos">
+                    
+                </div>
+                <form action="sumit">
+                    <input type="text" name="Nombre" value="Nombre de la Tarea">
+                    <input type="date" name="Fecha">
+                    <select name="Dificultad" id="Dificultad">
+                        <option value="">Seleción de Dificultad</option>
+                        <option value="Simple">Simple</option>
+                        <option value="Moderada">Moderada</option>
+                        <option value="Compleja">Compleja</option>
+                    </select>
+                    <select name="Tipo" id="TipoDeTrabajo">
+                        <option value="">Tipo De Trabajo</option>
+                        <option value="Reparacion">Reparacion</option>
+                        <option value="Diagnostico">Diagnostico</option>
+                        <option value="Actualializacion">Actualializacion</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                    <textarea name="comentario" placeholder="Descripcion de la Tarea..." rows="3" cols="50"></textarea>
+                    <input type="checkbox" name="Urgencia"><p>Urgennte</p></input>
+                    <input type="checkbox" name="TareaTerminada"><p>Completada</p></input> 
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="Informacion">
+            <h3>Informacion</h3>
+            <p>Este es un programa web diseñado para registrar tareas</p>
+            <p>Fue desarollado por Taiel Ramos</p>
+            <p>Coegio Acargo: Colegio Provincial Dr. Ernesto Guevera</p>
+        </div>
+        <div class="Links">
+            <h3>Links</h3>
+            <p><a href="Index.html">Home</a></p>
+            <p><a href="./CrearTarea.html">Crear Tarea</a></p>
+            <p><a href="#footer">Informacion</a></p>
+        </div>
+        <div class="Contactos">
+            <h3>Contactos</h3>
+            <p>Correo Electronico del desarollador: <a href="">taielramos4@gmail.com</a></p>
+            <p>Correo del Colegio Acargo: <a href=""></a></p>
+            <p>Faceboock del Colegio Acargo: <a href="">Faceboock</a></p>
+        </div>
+    </footer>
+</body>
+<script>
+    const VistaDeTareas = document.getElementById('VistaDeTareas');
+
+    if (VistaDeTareas.children.length == 0) {
+        const texto = document.createElement("p");
+        texto.textContent = "No hay Tareas Pendientes.";
+        VistaDeTareas.appendChild(texto);
+    }
+
+</script>
+</html>
