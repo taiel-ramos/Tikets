@@ -9,7 +9,9 @@
 </head>
 <body>
     <header>
+        <a href="./Index.html"><img src="./imagenes/homeicon.png" alt="Home"></a>
         <h1>Control de Tareas</h1>
+        <a href=""><img src="./imagenes/campana.png" alt="campana"></a>
     </header>
     <main>
         <section class="CreacionDeTareas">
@@ -17,30 +19,48 @@
                 <h2>Crear un Tarea Nueva</h2>
             </div>
             <div class="formulario">
-                <div class="Titulos">
-                    
-                </div>
-                <form action="sumit">
-                    <input type="text" name="Nombre" value="Nombre de la Tarea">
-                    <input type="date" name="Fecha">
-                    <select name="Dificultad" id="Dificultad">
-                        <option value="">Seleción de Dificultad</option>
-                        <option value="Simple">Simple</option>
-                        <option value="Moderada">Moderada</option>
-                        <option value="Compleja">Compleja</option>
-                    </select>
-                    <select name="Tipo" id="TipoDeTrabajo">
-                        <option value="">Tipo De Trabajo</option>
-                        <option value="Reparacion">Reparacion</option>
-                        <option value="Diagnostico">Diagnostico</option>
-                        <option value="Actualializacion">Actualializacion</option>
-                        <option value="Mantenimiento">Mantenimiento</option>
-                        <option value="Otro">Otro</option>
-                    </select>
-                    <textarea name="comentario" placeholder="Descripcion de la Tarea..." rows="3" cols="50"></textarea>
-                    <input type="checkbox" name="Urgencia"><p>Urgennte</p></input>
-                    <input type="checkbox" name="TareaTerminada"><p>Completada</p></input> 
+                <form id="formulario">
+                    <div class="sectores">
+                        <p>Nombre del Cliente</p>
+                        <input id="nombre" type="text" name="Nombre" value="Nombre de la Tarea">
+                    </div>
+                    <div class="sectores">
+                        <p>Fecha Actual</p>
+                        <input id="fecha" type="date" name="Fecha">
+                    </div>
+                    <div class="sectores">
+                        <p>Dificultad Prevista</p>
+                        <select id="dificulatad" name="Dificultad" id="Dificultad">
+                            <option value="">Seleción de Dificultad</option>
+                            <option value="Simple">Simple</option>
+                            <option value="Moderada">Moderada</option>
+                            <option value="Compleja">Compleja</option>
+                        </select>
+                    </div>
+                    <div class="sectores">
+                        <p>Clasificacion de la Tareas</p>
+                        <select id="tipo" name="Tipo" id="TipoDeTrabajo">
+                            <option value="">Tipo De Trabajo</option>
+                            <option value="Reparacion">Reparacion</option>
+                            <option value="Diagnostico">Diagnostico</option>
+                            <option value="Actualializacion">Actualializacion</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="sectores">
+                        <p>Informacion de la Tarea y su necesecidad</p>
+                        <textarea id="informacion" name="comentario" placeholder="Descripcion de la Tarea..." rows="8" cols="50"></textarea>                        
+                    </div>
+                    <div class="sectores">
+                        <label>Urgennte</label>
+                        <input id="urgente" class="checkbox" type="checkbox" name="Urgencia"></input>
+                        <label>Completada</label>
+                        <input id="completada" class="checkbox" type="checkbox" name="TareaTerminada"></input> 
+                    </div>
+                    <button type="submit">Guardar Tarea</button>
                 </form>
+                    
             </div>
         </section>
     </main>
@@ -66,13 +86,58 @@
     </footer>
 </body>
 <script>
-    const VistaDeTareas = document.getElementById('VistaDeTareas');
 
-    if (VistaDeTareas.children.length == 0) {
-        const texto = document.createElement("p");
-        texto.textContent = "No hay Tareas Pendientes.";
-        VistaDeTareas.appendChild(texto);
-    }
+    const formulario = document.getElementById('formulario');
+
+    formulario.addEventListener('sumit', async function(e){
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const fecha  = document.getElementById('fecha').value.trim();
+        const dificulatad = document.getElementById('dificulatad').value.trim();
+        const tipo = document.getElementById('tipo').value.trim();
+        const informacion = document.getElementById('informacion').value.trim();
+        const urgente = document.getElementById('urgente').value.trim();
+        const completada = document.getElementById('completada').value.trim();
+
+        if (!nombre || !fecha || !dificulatad || !tipo || !informacion || !urgente ) {
+            alert('todos los campos son obligatorios exepto completada');
+            return;
+        }
+
+        if (completada == true) {
+            alert('la casilla no deve marcarse');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/api/guardado',{
+                method: 'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre,
+                    fecha,
+                    dificulatad,
+                    tipo,
+                    informacion,
+                    urgente,
+                })
+            });
+            const datos = await response.json();
+            if (response.ok) {
+                alert('tarea creada de manera exitosa');
+                console.log('Tarea creada');
+            }else{
+                console.log('La tarea no se pudo crear');
+            }
+        }
+    });
+    
+
+
+
+
+
 
 </script>
 </html>
